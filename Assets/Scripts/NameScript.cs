@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NameScript : MonoBehaviour
 {
@@ -26,5 +27,17 @@ public class NameScript : MonoBehaviour
         text = inputField.GetComponent<TMP_InputField>().text;
 
         outputField.GetComponent<TMP_Text>().text = sampleText[randomIx] + " " + text.ToUpper() + "!";
+
+        reverseText.GetComponent<Toggle>().interactable = true;
+        if (reverseText.GetComponent<Toggle>().isOn) {
+            ReverseText();
+        }
+    }
+
+    public void ReverseText()
+    {
+        char[] charArray = outputField.GetComponent<TMP_Text>().text.ToCharArray();
+        System.Array.Reverse(charArray);
+        outputField.GetComponent<TMP_Text>().text = new string(charArray);
     }
 }
